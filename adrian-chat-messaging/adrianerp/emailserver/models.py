@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 
+
 class EmailConfig(models.Model):
     email_host = models.CharField(max_length=1200)
     sender_port = models.IntegerField()

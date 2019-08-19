@@ -11,6 +11,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import traceback
 import sys, os
+from logs.models import Log
 from django.core.mail import get_connection
  
 
@@ -38,11 +39,17 @@ class SentEmailSerializer(serializers.ModelSerializer):
           email = EmailMessage(instance.subject,instance.message,my_username,[instance.receiver.email], connection=connection)
           email.attach_file(str(instance.attachment))
           email.send()
-        
+          newlog = Log(user=instance.sender.email, action="emailmessage/create")
+          newlog.save()
+
          except Exception:
              traceback.print_exc()
         
-        
+         def create(self, validated_data):
+          message = EmailMessage(**validated_data)
+          sender = validated_data.pop('sender')
+          message.save()
+          return message
        
          
          
