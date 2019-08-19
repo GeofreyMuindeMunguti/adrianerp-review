@@ -37,7 +37,8 @@ class SentEmailSerializer(serializers.ModelSerializer):
                             use_tls=my_use_tls) 
          try:
           email = EmailMessage(instance.subject,instance.message,my_username,[instance.receiver.email], connection=connection)
-          email.attach_file(str(instance.attachment))
+          if instance.attachment != None:
+           email.attach_file(str(instance.attachment))
           email.send()
           newlog = Log(user=instance.sender.email, action="emailmessage/create")
           newlog.save()
