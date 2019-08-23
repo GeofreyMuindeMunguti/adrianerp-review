@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from reports.models import *
+from .models import *
 
 
 class IssueSerializer(serializers.ModelSerializer):
@@ -8,11 +8,11 @@ class IssueSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('created_at', 'updated_at', 'is_active')
 
-# class BtsSiteSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = BtsSite
-#         fields = '__all__'
-#         read_only_fields = ('created_at', 'updated_at', 'is_active')
+
+class BudgetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Budget
+        fields = '__all__'
 
 
 

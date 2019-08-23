@@ -1,4 +1,4 @@
-from reports.models import Issues
+from  .models import *
 from rest_framework import viewsets,permissions
 from .serializer import *
 
@@ -10,6 +10,10 @@ class IssuesViewSet(viewsets.ModelViewSet):
     search_fields = ('project_name', )
     ordering_fields = ('updated_at', 'project_name', )
 
-# class BtsSiteViewSet(viewsets.ModelViewSet):
-#       queryset = BtsSite
+
+class BudgetViewSet(viewsets.ModelViewSet):
+        queryset = Budget.objects.all()
+        serializer_class = BudgetSerializer
+
+  
   

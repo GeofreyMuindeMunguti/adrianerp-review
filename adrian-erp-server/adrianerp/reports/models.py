@@ -37,3 +37,20 @@ class Site(models.Model):
         return str(self.project_name)
 
 
+class Budget(models.Model):
+    site_name = models.ForeignKey(Site,on_delete=models.DO_NOTHING,blank=True,null=True)
+    date = models.DateTimeField(auto_now_add=True)
+    beneficiary_name = models.CharField(max_length=100)
+    quantity = models.IntegerField()
+    rate = models.IntegerField()
+    phoneNumber = models.CharField(max_length=100)
+    unit = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.site_name
+
+    def amount(self):
+      return quantity * rate
+
