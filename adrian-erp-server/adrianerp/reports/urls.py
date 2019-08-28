@@ -1,8 +1,9 @@
-from rest_framework import routers
-from rest_framework.urlpatterns import format_suffix_patterns
-from .api import *
-from .monitoring import *
-from .scorecard import *
+from  rest_framework import routers
+from  rest_framework.urlpatterns import format_suffix_patterns
+from  .api import *
+from  .monitoring import *
+from  .scorecard import *
+
 from django.conf.urls import url, include
 
 
